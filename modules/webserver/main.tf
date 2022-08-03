@@ -1,23 +1,28 @@
+terraform {
+  required_version = ">= 0.13"
+}
+
+
 resource "aws_vpc" "devclass" {
-  cidr_block           = "10.0.0.0/16"
+  cidr_block           = var.vpc_cidr_block
   instance_tenancy     = "default"
   enable_dns_support   = true
   enable_dns_hostnames = true
 
   tags = {
-    Name = "devclass"
+    Name = "${var.devclass_name}"
   }
 }
 
 
 resource "aws_subnet" "devclassa" {
   vpc_id                  = aws_vpc.devclass.id
-  cidr_block              = "10.0.1.0/24"
+  cidr_block              = var.subneta_cidr_block
   map_public_ip_on_launch = true
-  availability_zone       = "us-east-1a"
+  availability_zone       = "${var.availability_zone}a"
 
   tags = {
-    Name       = "devclass"
+    Name       = "${var.devclass_name}"
     SubnetName = "public-subnet-1a"
   }
 }
@@ -25,12 +30,12 @@ resource "aws_subnet" "devclassa" {
 
 resource "aws_subnet" "devclassb" {
   vpc_id                  = aws_vpc.devclass.id
-  cidr_block              = "10.0.2.0/24"
+  cidr_block              = var.subnetb_cidr_block
   map_public_ip_on_launch = true
-  availability_zone       = "us-east-1b"
+  availability_zone       = "${var.availability_zone}b"
 
   tags = {
-    Name       = "devclass"
+    Name       = "${var.devclass_name}"
     SubnetName = "public-subnet-1b"
   }
 }
@@ -40,7 +45,7 @@ resource "aws_internet_gateway" "devclass" {
   vpc_id = aws_vpc.devclass.id
 
   tags = {
-    Name = "devclass"
+    Name = "${var.devclass_name}"
   }
 }
 
@@ -54,44 +59,42 @@ resource "aws_route_table" "devclass" {
   }
 
   tags = {
-    Name = "devclass"
+    Name = "${var.devclass_name}"
   }
 }
 
 
 resource "aws_route_table_association" "devclassa" {
-  subnet_id = aws_subnet.devclassa.id
+  subnet_id      = aws_subnet.devclassa.id
   route_table_id = aws_route_table.devclass.id
 }
 
 
 resource "aws_route_table_association" "devclassb" {
-  subnet_id = aws_subnet.devclassb.id
+  subnet_id      = aws_subnet.devclassb.id
   route_table_id = aws_route_table.devclass.id
 }
 
 
 resource "aws_instance" "devclassa" {
-  ami = "ami-0729e439b6769d6ab"
-  instance_type = "t2.micro"
-  subnet_id = "${aws_subnet.devclassa.id}"
+  ami           = var.ami
+  instance_type = var.instance_type
+  subnet_id     = "${aws_subnet.devclassa.id}"
 
 
   tags = {
-    Name       = "devclass-a"
-    VpcName = "1a-instance"
+    Name       = "${var.devclassb_name} a"
   }
 }
 
 
 resource "aws_instance" "devclassb" {
-  ami = "ami-0729e439b6769d6ab"
-  instance_type = "t2.micro"
-  subnet_id = "${aws_subnet.devclassb.id}"
+  ami           = var.ami
+  instance_type = var.instance_type
+  subnet_id     = "${aws_subnet.devclassb.id}"
 
 
   tags = {
-    Name       = "devclass-b"
-    VpcName = "1b-instance"
+    Name       = "${var.devclassb_name} b"
   }
 }
