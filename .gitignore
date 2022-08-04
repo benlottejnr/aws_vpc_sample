@@ -5,9 +5,9 @@
 terraform.tfstate
 terraform.tfstate.backup
 
-modules/setups/.terraform
-modules/setups/.DS_Store
-modules/setups/.terraform.tfstate.lock.info
-modules/setups/.terraform.lock.hcl
-modules/setups/terraform.tfstate
-modules/setups/terraform.tfstate.backup
+setups/.terraform
+setups/.DS_Store
+setups/.terraform.tfstate.lock.info
+setups/.terraform.lock.hcl
+setups/terraform.tfstate
+setups/terraform.tfstate.backup
