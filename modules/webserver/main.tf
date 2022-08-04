@@ -83,7 +83,7 @@ resource "aws_instance" "devclassa" {
 
 
   tags = {
-    Name       = "${var.devclassb_name} a"
+    Name       = "${var.devclass_name} a"
   }
 }
 
@@ -95,6 +95,6 @@ resource "aws_instance" "devclassb" {
 
 
   tags = {
-    Name       = "${var.devclassb_name} b"
+    Name       = "${var.devclass_name} b"
   }
 }
