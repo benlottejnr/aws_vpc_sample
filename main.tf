@@ -2,7 +2,7 @@ terraform {
   backend "remote" {
     organization = "try_me"
     workspaces {
-      name = "hcl-example"
+      name = "aws_vpc_sample"
     }
   }
   required_providers {
