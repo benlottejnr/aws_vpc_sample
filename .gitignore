@@ -1,2 +1,13 @@
 .terraform/
 .DS_Store
+.terraform.tfstate.lock.info
+.terraform.lock.hcl
+terraform.tfstate
+terraform.tfstate.backup
+
+setups/.terraform
+setups/.DS_Store
+setups/.terraform.tfstate.lock.info
+setups/.terraform.lock.hcl
+setups/terraform.tfstate
+setups/terraform.tfstate.backup 
