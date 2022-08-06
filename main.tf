@@ -18,8 +18,8 @@ provider "aws" {
   region = "us-east-1"
 }
 
-module "bens_webserver" {
-  source             = "github.com/benlottejnr/aws_vpc_sample/tree/master/modules/webserver"
+module "webserver" {
+  source             = "./modules/webserver"
 
   devclass_name      = "ben10"
 }
