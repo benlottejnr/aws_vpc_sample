@@ -19,7 +19,7 @@ provider "aws" {
 }
 
 module "bens_webserver" {
-  source             = "modules/webserver"
+  source             = "https://github.com/benlottejnr/aws_vpc_sample/tree/master/modules/webserver"
 
   devclass_name      = "ben10"
 }
