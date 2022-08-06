@@ -1,10 +1,4 @@
 terraform {
-  backend "remote" {
-    organization = "try_me"
-    workspaces {
-      name = "aws_vpc_sample"
-    }
-  }
   required_providers {
     aws = {
       source  = "hashicorp/aws"
@@ -19,7 +13,7 @@ provider "aws" {
 }
 
 module "bens_webserver" {
-  source             = "modules/webserver"
+  source             = "../modules/webserver"
 
   devclass_name      = "ben10"
 }
