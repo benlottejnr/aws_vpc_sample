@@ -1,10 +1,4 @@
 terraform {
-  backend "remote" {
-    organization = "try_me"
-    workspaces {
-      name = "hcl-example"
-    }
-  }
   required_version = ">= 0.13"
 }
 
